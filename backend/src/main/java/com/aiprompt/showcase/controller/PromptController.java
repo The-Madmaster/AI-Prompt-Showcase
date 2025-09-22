@@ -11,7 +11,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/prompts")
-@CrossOrigin(origins = "*") // Allow frontend to connect
+@CrossOrigin(origins = {
+    "http://localhost:3000", 
+    "https://scaling-spork-w54jg4p5jvvcgjj7-3000.app.github.dev",
+    "https://scaling-spork-w54jg4p5jvvcgjj7-8080.app.github.dev"
+}) // Allow frontend to connect
 public class PromptController {
 
     @Autowired
