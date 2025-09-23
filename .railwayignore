@@ -1,0 +1,4 @@
+# Tell Railway to ignore Docker and use Java detection
+Dockerfile
+dockerfile
+.dockerignore
