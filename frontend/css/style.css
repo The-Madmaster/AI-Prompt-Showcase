@@ -28,7 +28,31 @@ main {
     margin: 0 auto;
     padding: 2rem 1rem;
 }
+/* New prompt animation */
+.new-prompt {
+    animation: slideIn 0.5s ease-out;
+}
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Notification toast */
+.notification-toast {
+    animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; transform: translateY(-10px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+}
 .prompts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));

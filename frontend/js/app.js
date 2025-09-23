@@ -10,15 +10,17 @@
     return 'http://localhost:8080/api';
 } */
 function getApiBaseUrl() {
-    // Your specific Codespaces backend URL
-    return 'https://scaling-spork-w54jg4p5jvvcgjj7-8080.app.github.dev/api';
+    // In production (GitHub Pages)
+    if (window.location.hostname === 'the-madmaster.github.io') {
+        return 'https://your-render-backend-url.onrender.com/api';
+    }
+    // Development
+    return 'http://localhost:8080/api';
 }
 
 const API_BASE_URL = getApiBaseUrl();
-
-console.log('Frontend URL:', window.location.href);
-console.log('API Base URL:', API_BASE_URL);
-
+console.log('Environment:', window.location.hostname);
+console.log('API URL:', API_BASE_URL);
 // Load prompts when page loads
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Page loaded, loading prompts...');

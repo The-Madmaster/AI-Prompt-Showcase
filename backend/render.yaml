@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ai-prompt-backend
+    env: docker
+    plan: free
+    docker:
+      dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: PORT
+        value: 10000
+    healthCheckPath: /api/prompts/health

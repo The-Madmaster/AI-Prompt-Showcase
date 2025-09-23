@@ -50,4 +50,21 @@ public class PromptController {
     public String healthCheck() {
         return "🚀 AI Prompt Showcase API is running!";
     }
-}
+    @Autowired
+private WebSocketController webSocketController;
+
+@PutMapping("/{id}/approve")
+public ResponseEntity<Prompt> approvePrompt(@PathVariable Long id) {
+    Optional<Prompt> promptOpt = promptRepository.findById(id);
+    if (promptOpt.isPresent()) {
+        Prompt prompt = promptOpt.get();
+        prompt.setIsApproved(true);
+        Prompt savedPrompt = promptRepository.save(prompt);
+        
+        // Notify all connected clients
+        webSocketController.notifyNewPrompt(savedPrompt);
+        
+        return ResponseEntity.ok(savedPrompt);
+    }
+    return ResponseEntity.notFound().build();
+} }

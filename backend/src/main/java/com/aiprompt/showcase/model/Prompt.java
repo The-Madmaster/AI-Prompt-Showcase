@@ -30,6 +30,11 @@ public class Prompt {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    private String inputImageUrl;    // Cloudinary URL for input image
+private String outputImageUrl;   // Cloudinary URL for output image
+private String inputImagePublicId;  // Cloudinary public ID for deletion
+private String outputImagePublicId; // Cloudinary public ID for deletion
+
     // Default constructor (required by JPA)
     public Prompt() {}
 
