@@ -1,10 +1,11 @@
 services:
   - type: web
     name: ai-prompt-backend
-    env: docker
+    env: java
     plan: free
-    docker:
-      dockerfilePath: ./backend/Dockerfile
+    rootDirectory: backend
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/*.jar --spring.profiles.active=prod
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
