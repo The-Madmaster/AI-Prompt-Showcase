@@ -81,8 +81,18 @@ function displayPrompts(prompts) {
 // Handle form submission
 function setupForm() {
     const form = document.getElementById('prompt-form');
+    const successMessage = document.getElementById('success-message');
+    
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        
+        // Show loading state
+        submitButton.textContent = 'Submitting...';
+        submitButton.disabled = true;
+        successMessage.style.display = 'none';
         
         const formData = new FormData(form);
         const promptData = {
@@ -96,6 +106,8 @@ function setupForm() {
         // Basic validation
         if (!promptData.promptText || !promptData.sourceUrl) {
             alert('Please fill in required fields: Prompt Text and Source URL');
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
             return;
         }
         
@@ -112,9 +124,13 @@ function setupForm() {
             if (response.ok) {
                 const newPrompt = await response.json();
                 console.log('Prompt submitted successfully:', newPrompt);
-                alert('✅ Prompt submitted successfully! It will appear after moderation.');
+                
+                // Show success message
+                successMessage.textContent = '✅ Prompt submitted successfully! It will appear after moderation.';
+                successMessage.style.display = 'block';
+                
                 form.reset();
-                loadPrompts(); // Reload prompts to show the new one
+                loadPrompts(); // Reload prompts
             } else {
                 const errorText = await response.text();
                 throw new Error(`Server error: ${response.status} - ${errorText}`);
@@ -122,6 +138,10 @@ function setupForm() {
         } catch (error) {
             console.error('Error submitting prompt:', error);
             alert('❌ Error submitting prompt: ' + error.message);
+        } finally {
+            // Reset button state
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
         }
     });
 }
