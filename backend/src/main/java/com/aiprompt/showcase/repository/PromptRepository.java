@@ -8,4 +8,8 @@ public interface PromptRepository extends JpaRepository<Prompt, Long> {
     // This automatically gives us CRUD operations!
     List<Prompt> findByIsApprovedTrue(); // Find only approved prompts
     List<Prompt> findByIsApprovedFalse(); // Find pending moderation
+
+    // For filtering
+    List<Prompt> findByIsApprovedTrueAndCategoriesContainingIgnoreCase(String category);
+    List<Prompt> findByIsApprovedTrueAndTagsContainingIgnoreCase(String tag);
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AI Prompt Showcase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+        .admin-table th, .admin-table td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+        .admin-table th { background: #f0f0f0; }
+        .admin-actions button { margin-right: 0.5rem; }
+        .flagged { background: #fff3cd; }
+        .nsfw { color: #b71c1c; font-weight: bold; }
+        .low-quality { color: #856404; font-weight: bold; }
+        .filter-bar { margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 1rem; }
+        .filter-bar input, .filter-bar select { padding: 0.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <p>Moderate submitted prompts</p>
+    </header>
+    <main>
+        <div class="filter-bar">
+            <input type="text" id="searchInput" placeholder="Search by keyword...">
+            <input type="text" id="categoryInput" placeholder="Filter by category">
+            <input type="text" id="tagInput" placeholder="Filter by tag">
+            <select id="sortSelect">
+                <option value="date">Sort by Date</option>
+                <option value="popularity">Sort by Popularity</option>
+            </select>
+            <button id="refreshBtn">Refresh</button>
+        </div>
+        <table class="admin-table" id="pendingPromptsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Prompt</th>
+                    <th>Credit</th>
+                    <th>Category</th>
+                    <th>Tags</th>
+                    <th>NSFW</th>
+                    <th>Low Quality</th>
+                    <th>Submitted</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be loaded by JS -->
+            </tbody>
+        </table>
+        <div id="admin-message" class="success-message" style="display:none;"></div>
+    </main>
+    <script src="js/admin.js"></script>
+</body>
+</html>

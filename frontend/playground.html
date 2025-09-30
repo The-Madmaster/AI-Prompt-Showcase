@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Playground - AI Prompt Showcase</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .playground-container { max-width: 600px; margin: 2rem auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 2rem; }
+    .playground-container textarea { min-height: 80px; }
+    .playground-result { background: #f8f9fa; border-radius: 5px; padding: 1rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>API Playground</h1>
+    <p>Test your prompts live with an AI model</p>
+  </header>
+  <main>
+    <div class="playground-container">
+      <form id="playground-form">
+        <label for="playground-prompt">Prompt</label>
+        <textarea id="playground-prompt" required placeholder="Enter your prompt..."></textarea>
+        <label for="playground-model">Model</label>
+        <input type="text" id="playground-model" placeholder="e.g., gpt-3.5-turbo" value="gpt-3.5-turbo">
+        <button type="submit">Run Prompt</button>
+      </form>
+      <div id="playground-result" class="playground-result" style="display:none;"></div>
+    </div>
+  </main>
+  <script src="js/playground.js"></script>
+</body>
+</html>
