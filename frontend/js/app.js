@@ -10,12 +10,16 @@
     return 'http://localhost:8080/api';
 } */
 function getApiBaseUrl() {
+    // Use environment variable if set (for deployment)
+    if (typeof process !== 'undefined' && process.env && process.env.REACT_APP_API_BASE_URL) {
+        return process.env.REACT_APP_API_BASE_URL;
+    }
     // In production (GitHub Pages)
     if (window.location.hostname === 'the-madmaster.github.io') {
         return 'https://your-render-backend-url.onrender.com/api';
     }
     // Development
-    return 'http://localhost:8080/api';
+    return 'http://localhost:8081/api';
 }
 
 const API_BASE_URL = getApiBaseUrl();
