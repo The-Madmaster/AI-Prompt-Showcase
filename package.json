@@ -1,0 +1,9 @@
+{
+  "homepage": "https://the-madmaster.github.io/AI-Prompt-Showcase/",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  }
+}
